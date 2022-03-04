@@ -1,28 +1,22 @@
 <?php
 
-namespace app\controllers;
+namespace app\controllers\back;
 
-
-use app\services\CountryService;
+use app\services\OptionService;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\rest\Controller;
-use yii\tests\Fixture;
 
-class CountryController extends Controller
+class OptionController extends Controller
 {
     private $service;
 
-    public function __construct($id, $modules, CountryService $service, $config = [])
+    public $enableCsrfValidation = false;
+
+    public function __construct($id, $modules, OptionService $service, $config = [])
     {
         $this->service = $service;
         parent::__construct($id, $modules, $config);
-    }
-
-    public function actionTest()
-    {
-        $test = new \app\tests\Fixture();
-        $test->testFix();
     }
 
     public function behaviors()
@@ -33,7 +27,7 @@ class CountryController extends Controller
                 'actions' => [
                     'create' => ['post'],
                     'delete' => ['delete'],
-                    'list'   => ['get'],
+                    'list'   => ['get']
                 ]
             ]
         ];
@@ -47,6 +41,11 @@ class CountryController extends Controller
         return $result;
     }
 
+    public function actionList()
+    {
+        return $this->service->list();
+    }
+
     public function actionDelete(int $id)
     {
         $result = $this->service->delete($id);
@@ -55,8 +54,8 @@ class CountryController extends Controller
         return $result;
     }
 
-    public function actionList()
+    public function actionGet(int $id)
     {
-        return $this->service->list();
+        return $this->service->get($id);
     }
 }

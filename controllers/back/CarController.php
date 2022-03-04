@@ -1,5 +1,5 @@
 <?php
-namespace app\controllers;
+namespace app\controllers\back;
 
 use app\components\YourLinkPager;
 use app\services\CarService;

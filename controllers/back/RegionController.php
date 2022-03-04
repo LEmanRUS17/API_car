@@ -1,6 +1,6 @@
 <?php
 
-namespace app\controllers;
+namespace app\controllers\back;
 
 use app\services\RegionService;
 use Yii;

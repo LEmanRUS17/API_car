@@ -28,7 +28,7 @@ return [
             'rules'               => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'option'],
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'user'],
-                '<controller>/<action>' => '<controller>/<action>',
+                '<controller>/<action>' => 'back/<controller>/<action>',
             ],
         ],
         'user' => [

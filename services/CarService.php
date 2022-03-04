@@ -27,10 +27,9 @@ class CarService implements ServicesInterface, CarServicesInterface // Серв�
     private $storage; // хранилище
     private $entity;
 
-    public function __construct(EntityCar $entity, EntityOption $entityOption)
+    public function __construct(EntityCar $entity)
     {
         $this->entity = $entity;
-        $this->entityOption = $entityOption;
         $this->storage = new CarStorage(new CarMapper($this->entity),
                                         new SpecificationMapper($this->entity),
                                         new OptionMapper($this->entity),

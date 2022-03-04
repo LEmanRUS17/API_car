@@ -61,7 +61,8 @@ $config = [
 //                'car' => 'car/index'
 //                ['class' => 'yii\rest\UrlRule', 'controller' => 'car'],
 //                '<action w+>' => '<controller>/index>',
-                '<controller>/<action>' => '<controller>/<action>'
+                'front/<controller>/<action>' => 'front/<controller>/<action>',
+                '<controller>/<action>' => 'back/<controller>/<action>'
 //                ['class' => 'yii\rest\UrlRule', 'controller' => 'option'],
             ],
         ],

@@ -1,19 +1,17 @@
 <?php
 
-namespace app\controllers;
+namespace app\controllers\back;
 
-use app\services\OptionService;
+use app\services\LocalityService;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\rest\Controller;
 
-class OptionController extends Controller
+class LocalityController extends Controller
 {
     private $service;
 
-    public $enableCsrfValidation = false;
-
-    public function __construct($id, $modules, OptionService $service, $config = [])
+    public function __construct($id, $modules, LocalityService $service, $config = [])
     {
         $this->service = $service;
         parent::__construct($id, $modules, $config);
@@ -52,10 +50,5 @@ class OptionController extends Controller
 
         Yii::$app->response->statusCode = 204;
         return $result;
-    }
-
-    public function actionGet(int $id)
-    {
-        return $this->service->get($id);
     }
 }

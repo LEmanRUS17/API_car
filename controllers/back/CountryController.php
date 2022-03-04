@@ -1,17 +1,18 @@
 <?php
 
-namespace app\controllers;
+namespace app\controllers\back;
 
-use app\services\LocalityService;
+
+use app\services\CountryService;
 use Yii;
 use yii\filters\VerbFilter;
 use yii\rest\Controller;
 
-class LocalityController extends Controller
+class CountryController extends Controller
 {
     private $service;
 
-    public function __construct($id, $modules, LocalityService $service, $config = [])
+    public function __construct($id, $modules, CountryService $service, $config = [])
     {
         $this->service = $service;
         parent::__construct($id, $modules, $config);
@@ -25,7 +26,7 @@ class LocalityController extends Controller
                 'actions' => [
                     'create' => ['post'],
                     'delete' => ['delete'],
-                    'list'   => ['get']
+                    'list'   => ['get'],
                 ]
             ]
         ];
@@ -39,16 +40,16 @@ class LocalityController extends Controller
         return $result;
     }
 
-    public function actionList()
-    {
-        return $this->service->list();
-    }
-
     public function actionDelete(int $id)
     {
         $result = $this->service->delete($id);
 
         Yii::$app->response->statusCode = 204;
         return $result;
+    }
+
+    public function actionList()
+    {
+        return $this->service->list();
     }
 }
