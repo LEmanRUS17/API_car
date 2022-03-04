@@ -25,9 +25,13 @@ class ParsingService
 
     public function carsDromRu(int $start, int $num)
     {
-        for($i = $start; $i > $start - $num; $i--)
-            $arr[] = $this->carDromRu($i);
-
+        for ($i = $start; $i > $start - $num;) {
+            $data = $this->carDromRu($i);
+            if ($data != false) {
+                $i--;
+                $arr[] = $data;
+            }
+        }
         return $arr;
     }
 

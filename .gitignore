@@ -29,5 +29,8 @@ phpunit.phar
 tests/_output/*
 tests/_support/_generated
 
+web/image/*.jpg
+web/image/*.png
+
 #vagrant folder
 /.vagrant
