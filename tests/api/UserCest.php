@@ -103,8 +103,8 @@ class UserCest
         $I->sendDelete('/user/delete?id=51');
         $I->seeResponseCodeIs(HttpCode::NO_CONTENT);
         // пытаемся получить удаленного пользователя
-//        $I->sendGet('/user/view?id=51');
-//        $I->seeResponseCodeIs(HttpCode::NOT_FOUND);
-//        $I->seeResponseIsJson();
+        $I->sendGet('/user/view?id=51');
+        $I->seeResponseCodeIs(HttpCode::MISDIRECTED_REQUEST);
+        $I->seeResponseIsJson();
     }
 }

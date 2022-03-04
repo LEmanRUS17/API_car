@@ -33,8 +33,7 @@ class OptionCest
     {
 
         $faker = Factory::create();
-        $I->sendPost(
-            'options',
+        $I->sendPost('/option/create',
             [
                 'title' => $faker->name,
             ]
@@ -44,14 +43,30 @@ class OptionCest
         $I->seeResponseContainsJson(['success' => ['message' => 'Опция дабавленна']]);
     }
 
+    public function getMember(ApiTester $I) {
+
+        $I->sendGet('/option/get?id=51');
+        $I->seeResponseCodeIs(HttpCode::OK);
+        $I->seeResponseIsJson();
+        $I->seeResponseIsValidOnJsonSchemaString('{"type":"object"}');
+        $validResponseJsonSchema = json_encode(
+            [
+                'properties' => [
+                    'id' => ['type' => 'integer'],
+                    'title' => ['type' => 'string'],
+                ]
+            ]
+        );
+        $I->seeResponseIsValidOnJsonSchemaString($validResponseJsonSchema);
+    }
+
     public function deleteOption(ApiTester $I)
     {
-
         $I->sendDelete('/option/delete?id=51');
         $I->seeResponseCodeIs(HttpCode::NO_CONTENT);
-        //try to get deleted user
-//        $I->sendGet('option/1');
-//        $I->seeResponseCodeIs(HttpCode::NOT_FOUND);
-//        $I->seeResponseIsJson();
+        // try to get deleted option
+        $I->sendGet('/option/get?id=51');
+        $I->seeResponseCodeIs(HttpCode::MISDIRECTED_REQUEST);
+        $I->seeResponseIsJson();
     }
 }

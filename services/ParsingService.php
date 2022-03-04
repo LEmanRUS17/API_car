@@ -82,7 +82,7 @@ class ParsingService
             foreach ($arr as $key => $num) {
                 $path = dirname(dirname(__FILE__)) . '/web/image/';
                 $img = time() . $key . '_' . rand() . '.jpg';
-                file_put_contents($path. $img, file_get_contents($num));
+                file_put_contents($path . $img, file_get_contents($num));
                 $arr[$key] = '/image/' . $img;
             }
 

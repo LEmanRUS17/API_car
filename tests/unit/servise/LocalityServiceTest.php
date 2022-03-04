@@ -8,7 +8,7 @@ use app\tests\fixtures\LocalityFixture;
 use app\tests\fixtures\RegionFixture;
 use Yii;
 
-class LocalityTest extends \Codeception\Test\Unit
+class LocalityServiceTest extends \Codeception\Test\Unit
 {
     /**
      * @var \UnitTester

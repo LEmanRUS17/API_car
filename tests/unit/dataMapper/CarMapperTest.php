@@ -9,6 +9,7 @@ use app\tests\fixtures\CarOptionFixture;
 use app\tests\fixtures\CountryFixture;
 use app\tests\fixtures\LocalityFixture;
 use app\tests\fixtures\OptionFixture;
+use app\tests\fixtures\PhotoFixture;
 use app\tests\fixtures\RegionFixture;
 use app\tests\fixtures\UserFixture;
 use Faker\Factory;
@@ -31,6 +32,7 @@ class CarMapperTest extends \Codeception\Test\Unit
 
         $this->tester->haveFixtures([
             'Car' => CarFixture::class,
+//            'Image' => PhotoFixture::class,
             'Option' => OptionFixture::class,
             'CarOption' => CarOptionFixture::class,
             'Locality' => LocalityFixture::class,

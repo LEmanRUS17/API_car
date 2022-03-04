@@ -7,7 +7,7 @@ use app\tests\fixtures\CountryFixture;
 use app\tests\fixtures\RegionFixture;
 use Yii;
 
-class RegionTest extends \Codeception\Test\Unit
+class RegionServiceTest extends \Codeception\Test\Unit
 {
     /**
      * @var \UnitTester

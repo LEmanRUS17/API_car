@@ -222,7 +222,7 @@ class ValidatorBuilder implements ValidatorBuilderInterface
             $this->errors[] = 'Верхний диапазон цены должен быть в пределах от ' . $this->minPrice . ' до ' . $this->maxPrice;
     }
 
-    public function validateMinMaxYear(int $min , int $max)
+    public function validateMinMaxYear(int $min, int $max)
     {
 
         if ( $min > $max)
@@ -235,7 +235,7 @@ class ValidatorBuilder implements ValidatorBuilderInterface
             $this->errors[] = 'Верхний диапазон года выпуска должен быть в пределах от ' . Yii::$app->params['min_year'] . ' до ' . Yii::$app->params['max_year'];
     }
 
-    public function validateMinMaxMileage(int $min , int $max)
+    public function validateMinMaxMileage(int $min, int $max)
     {
         if ( $min > $max)
             $this->errors[] = 'Минимальный пробег не должен быть больше максимального';

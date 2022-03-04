@@ -39,8 +39,9 @@ class OptionService implements ServicesInterface
     {
         $this->entity->init($arr);
 
-        $validate = new OptionValidator($this->entity);
-        $validate->validate();
+        $validator = new OptionValidator($this->entity, ['title']);
+        if (!$validator->validate())
+            return $validator->validate();
 
         $this->storage->create();
 
@@ -60,6 +61,11 @@ class OptionService implements ServicesInterface
     public function get(int $id)
     {
         $this->entity->init(['id' => $id]);
+
+        $validator = new OptionValidator($this->entity, ['id']);
+        if (!$validator->validate())
+            return $validator->validate();
+
         $this->storage->get();
 
         return $this->entity->getAll();

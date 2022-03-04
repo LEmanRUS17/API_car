@@ -7,7 +7,6 @@ use app\dataMapper\UserMapper;
 use app\entities\EntityUser;
 use app\interface\ServicesInterface;
 use app\storage\UserStorage;
-use app\validators\GetUserValidate;
 use app\validators\UserValidate;
 use Yii;
 use yii\data\ArrayDataProvider;
@@ -27,8 +26,9 @@ class UserService implements ServicesInterface
     {
         $this->entity->init($arr);
 
-        $validate = new UserValidate($this->entity);
-        $validate->validate();
+        $validator = new UserValidate($this->entity, ['lastname', 'firstname', 'surname', 'telephone']);
+        if (!$validator->validate())
+            return $validator->validate();
 
         $this->storage->create();
 
@@ -39,8 +39,9 @@ class UserService implements ServicesInterface
     {
         $this->entity->init(['id' => $id]);
 
-        $validate = new GetUserValidate($this->entity);
-        $validate->validate();
+        $validator = new UserValidate($this->entity, ['id']);
+        if (!$validator->validate())
+            return $validator->validate();
 
         $this->storage->delete();
 
@@ -51,8 +52,9 @@ class UserService implements ServicesInterface
     {
         $this->entity->init(['id' => $id]);
 
-        $validate = new GetUserValidate($this->entity);
-        $validate->validate();
+        $validator = new UserValidate($this->entity, ['id']);
+        if (!$validator->validate())
+            return $validator->validate();
 
         $this->storage->get();
 

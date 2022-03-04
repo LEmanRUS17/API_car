@@ -28,8 +28,9 @@ class LocalityService implements ServicesInterface
     {
         $this->entity->init($arr);
 
-        $validator = new LocalityValidator($this->entity);
-        $validator->validate();
+        $validator = new LocalityValidator($this->entity, ['title', 'regionId']);
+        if (!$validator->validate())
+            return $validator->validate();
 
         $this->storage->create();
 
@@ -39,6 +40,10 @@ class LocalityService implements ServicesInterface
     public function delete(int $id)
     {
         $this->entity->init(['id' => $id]);
+
+        $validator = new LocalityValidator($this->entity, ['id']);
+        if (!$validator->validate())
+            return $validator->validate();
 
         $this->storage->delete();
 
@@ -58,6 +63,11 @@ class LocalityService implements ServicesInterface
     public function get(array $arr)
     {
         $this->entity->init($arr);
+
+        $validator = new LocalityValidator($this->entity, ['id']);
+        if (!$validator->validate())
+            return $validator->validate();
+
         $this->storage->get();
 
         return $this->entity->getAll();

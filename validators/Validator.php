@@ -30,8 +30,7 @@ abstract class Validator
             'code' => 0,
             'status' => 421
         ];
-        $response->send();
 
-        exit;
+       $response->send();
     }
 }

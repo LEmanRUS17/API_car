@@ -41,8 +41,9 @@ class CarService implements ServicesInterface, CarServicesInterface // Серв�
     {
         $this->filling($arr);
 
-        $valid = new CreateCarValidateDirector($this->entity);
-        $valid->validate();
+        $validator = new CreateCarValidateDirector($this->entity);
+        if (!$validator->validate())
+            return $validator->validate();
 
         $this->uploadImage();
         $this->storage->create();
@@ -60,13 +61,16 @@ class CarService implements ServicesInterface, CarServicesInterface // Серв�
     {
         $this->filling($arr);
 
-        $valid = new ValidateDirector($this->entity);
-        $valid->validate();
+        $validator = new ValidateDirector($this->entity);
+        if (!$validator->validate())
+            return $validator->validate();
 
         $img = $this->storage->imagePath();
-        $this->uploadImage();
-        $this->storage->update();
-        $this->deleteImg($img);
+
+            $this->uploadImage();
+            $this->storage->update();
+            $this->deleteImg($img);
+
 
         return ['success' => ['message' => 'Машина обновлена']];
     }
@@ -75,12 +79,15 @@ class CarService implements ServicesInterface, CarServicesInterface // Серв�
     {
         $this->entity->init(['id' => $id]);
 
-        $valid = new GetValidatorDirector($this->entity);
-        $valid->validate();
+        $validator = new GetValidatorDirector($this->entity);
+        if (!$validator->validate())
+            return $validator->validate();
 
         $img = $this->storage->imagePath();
-        $this->storage->delete();
-        $this->deleteImg($img);
+
+            $this->storage->delete();
+            $this->deleteImg($img);
+
 
         return ['success' => ['message' => 'Машина удалена']];
     }
@@ -89,8 +96,9 @@ class CarService implements ServicesInterface, CarServicesInterface // Серв�
     {
         $this->entity->init(['id' => $id]);
 
-        $valid = new GetValidatorDirector($this->entity);
-        $valid->validate();
+        $validator = new GetValidatorDirector($this->entity);
+        if (!$validator->validate())
+            return $validator->validate();
 
         $this->storage->get();
         return $this->entity->getAll();

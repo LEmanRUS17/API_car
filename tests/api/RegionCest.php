@@ -35,8 +35,8 @@ class RegionCest
         $I->seeResponseIsValidOnJsonSchemaString($validResponseJsonSchema);
     }
 
-    public function createNewRegion(ApiTester $I) {
-
+    public function createNewRegion(ApiTester $I)
+    {
         $faker = Factory::create();
         $I->sendPost(
             '/region/create',
@@ -50,13 +50,9 @@ class RegionCest
         $I->seeResponseContainsJson(['success' => ['message' => 'Регион дабавлен']]);
     }
 
-    public function deleteRegion(ApiTester $I) {
-
+    public function deleteRegion(ApiTester $I)
+    {
         $I->sendDelete('/region/delete?id=51');
         $I->seeResponseCodeIs(HttpCode::NO_CONTENT);
-        //try to get deleted user
-//        $I->sendGet('option/1');
-//        $I->seeResponseCodeIs(HttpCode::NOT_FOUND);
-//        $I->seeResponseIsJson();
     }
 }

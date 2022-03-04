@@ -7,7 +7,6 @@ use app\entities\EntityCountry;
 use app\interface\ServicesInterface;
 use app\storage\CountryStorage;
 use app\validators\CountryValidator;
-use app\validators\GetUserValidate;
 use Yii;
 
 class CountryService implements ServicesInterface
@@ -26,8 +25,9 @@ class CountryService implements ServicesInterface
     {
         $this->entity->init($arr);
 
-        $validator = new CountryValidator($this->entity);
-        $validator->validate();
+        $validator = new CountryValidator($this->entity, ['title']);
+        if (!$validator->validate())
+            return $validator->validate();
 
         $this->storage->create();
 
@@ -37,6 +37,10 @@ class CountryService implements ServicesInterface
     public function delete(int $id)
     {
         $this->entity->init(['id' => $id]);
+
+        $validator = new CountryValidator($this->entity, ['id']);
+        if (!$validator->validate())
+            return $validator->validate();
 
         $this->storage->delete();
 
@@ -56,6 +60,11 @@ class CountryService implements ServicesInterface
     public function get(array $arr)
     {
         $this->entity->init($arr);
+
+        $validator = new CountryValidator($this->entity, ['id']);
+        if (!$validator->validate())
+            return $validator->validate();
+
         $this->storage->get();
 
         return $this->entity->getAll();

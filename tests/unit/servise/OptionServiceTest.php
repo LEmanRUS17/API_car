@@ -6,7 +6,7 @@ use app\services\OptionService;
 use app\tests\fixtures\OptionFixture;
 use Yii;
 
-class OptionTest extends \Codeception\Test\Unit
+class OptionServiceTest extends \Codeception\Test\Unit
 {
     /**
      * @var \UnitTester

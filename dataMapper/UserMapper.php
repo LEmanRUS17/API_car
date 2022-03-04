@@ -171,7 +171,6 @@ class UserMapper implements MapperInterface
         if ($arr['cars'][0] != null) {
             foreach ($arr['cars'] as $num) {
                 $entityCar = new EntityCar($num);
-die;
                 if (!empty($num['specification'])) {
                     $entityCar->setSpecification(new EntitySpecification($num['specification']));
                 }

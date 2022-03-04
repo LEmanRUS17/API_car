@@ -26,8 +26,9 @@ class RegionService implements ServicesInterface
     {
         $this->entity->init($arr);
 
-        $validate = new RegionValidator($this->entity);
-        $validate->validate();
+        $validator = new RegionValidator($this->entity, ['title', 'countryId']);
+        if (!$validator->validate())
+            return $validator->validate();
 
         $this->storage->create();
 
@@ -37,6 +38,10 @@ class RegionService implements ServicesInterface
     public function delete(int $id)
     {
         $this->entity->init(['id' => $id]);
+
+        $validator = new RegionValidator($this->entity, ['id']);
+        if (!$validator->validate())
+            return $validator->validate();
 
         $this->storage->delete();
 
@@ -56,6 +61,10 @@ class RegionService implements ServicesInterface
     public function get(array $arr)
     {
         $this->entity->init($arr);
+
+        $validator = new RegionValidator($this->entity, ['id']);
+        if (!$validator->validate())
+            return $validator->validate();
 
         $this->storage->get();
 

@@ -53,9 +53,6 @@ class LocalityCest
 
         $I->sendDelete('/locality/delete?id=51');
         $I->seeResponseCodeIs(HttpCode::NO_CONTENT);
-        //try to get deleted user
-        $I->sendGet('option/51');
-        $I->seeResponseCodeIs(HttpCode::NOT_FOUND);
-        $I->seeResponseIsJson();
+
     }
 }

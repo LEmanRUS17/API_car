@@ -41,8 +41,6 @@ class CreateCarValidateDirector extends Validator
         foreach ($this->builder->getErrors() as $error)
             $this->addError($error);
 
-        $this->getErrors();
-
-        return $this;
+        return $this->getErrors();
     }
 }

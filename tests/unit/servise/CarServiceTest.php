@@ -9,6 +9,7 @@ use app\tests\fixtures\CarFixture;
 use app\tests\fixtures\CountryFixture;
 use app\tests\fixtures\LocalityFixture;
 use app\tests\fixtures\OptionFixture;
+use app\tests\fixtures\PhotoFixture;
 use app\tests\fixtures\RegionFixture;
 use app\tests\fixtures\UserCarFixture;
 use app\tests\fixtures\UserFixture;
@@ -17,7 +18,7 @@ use Yii;
 use yii\data\SqlDataProvider;
 use yii\debug\models\timeline\DataProvider;
 
-class CarTest extends \Codeception\Test\Unit
+class CarServiceTest extends \Codeception\Test\Unit
 {
     /**
      * @var \UnitTester
@@ -31,6 +32,7 @@ class CarTest extends \Codeception\Test\Unit
         $this->stack = require(__DIR__ . '/../../fixtures/data/car.php');
         $this->tester->haveFixtures([
             'car' => CarFixture::class,
+            'image' => PhotoFixture::class,
             'locality' => LocalityFixture::class,
             'region' => RegionFixture::class,
             'country' => CountryFixture::class,
@@ -46,6 +48,8 @@ class CarTest extends \Codeception\Test\Unit
             'error' => [0],
             'size' => [52066]];
 
+
+
         $this->service = new CarService(new EntityCar([]), new EntityOption());
     }
 
@@ -54,8 +58,8 @@ class CarTest extends \Codeception\Test\Unit
     {
         foreach ($this->stack as $key => $num)
         {
+            $num['user'] = 51;
             $answer = $this->service->create($num);
-
             $this->assertIsArray($answer);
             $this->assertArrayHasKey('success', $answer);
         }
