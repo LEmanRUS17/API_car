@@ -3,8 +3,12 @@
 namespace app\controllers\front;
 
 use app\entities\EntityCar;
+use app\entities\EntityLocality;
 use app\entities\EntityOption;
 use app\services\CarService;
+use app\services\LocalityService;
+use app\services\OptionService;
+use Yii;
 use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\rest\Controller;
@@ -75,6 +79,29 @@ class CarController extends Controller
     public function actionCreate()
     {
         \Yii::$app->response->format = \yii\web\Response::FORMAT_HTML;
-        return $this->render('create');
+
+        if (Yii::$app->request->post()) {
+            $car = new CarService(new EntityCar([]));
+            $flash = $car->create(Yii::$app->request->post());
+
+            Yii::$app->session->setFlash('success', $flash['success']['message']);
+        }
+
+        $option = new OptionService(new EntityOption());
+        $options = $option->list();
+        $locality = new LocalityService(new EntityLocality());
+        $locations = $locality->list();
+        return $this->render('create', compact('locations', 'options'));
+    }
+
+    public function actionList()
+    {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_HTML;
+
+        //$posts = Post::find()->all();
+        $service = new CarService(new EntityCar([]));
+        $pages = $service->list();
+        $models = $pages->getModels();
+        return $this->render('list', compact('pages', 'models'));
     }
 }

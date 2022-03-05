@@ -7,6 +7,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'language' => 'ru_RU',
+    'defaultRoute' => 'frontend/car/index',
     'bootstrap' => [
         'log',
         'app\bootstrap\CarBootstrap',

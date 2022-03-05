@@ -28,7 +28,7 @@
         "imangazaliev/didom": "^1.18",
         "guzzlehttp/guzzle": "~6.0",
         "electrolinux/phpquery": "^0.9.6",
-        "ext-gd": "*"
+        "yiisoft/yii2-bootstrap5": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

@@ -6,12 +6,32 @@
 
 use yii\bootstrap4\ActiveForm;
 use yii\bootstrap4\Html;
+use yii\bootstrap5\Carousel;
 
-$this->title = 'View';
+$this->title = 'Просмотр автомобиля';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="car-create">
     <h1><?= Html::encode($this->title) ?></h1>
+
+<!--    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">-->
+<!--        <div class="carousel-inner">-->
+<!--            --><?php //foreach ($car['photo'] as $photo) {
+//
+//                echo '<div class="carousel-item">';
+//                echo '<img src="' . $photo['photo'] . '" class="d-block w-100" alt="...">';
+//                echo '</div>';
+//            } ?>
+<!--        </div>-->
+<!--        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev">-->
+<!--            <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--            <span class="visually-hidden">Предыдущий</span>-->
+<!--        </button>-->
+<!--        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next">-->
+<!--            <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--            <span class="visually-hidden">Следующий</span>-->
+<!--        </button>-->
+<!--    </div>-->
 
     <div class="container">
         <table class="table table-hover">
@@ -60,5 +80,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 </td>
             </tr>
         </table>
+
+        <?= Html::beginForm(['/front/car/view'], 'GET'); ?>
+        <?= Html::textInput('id'); ?>
+        <div class="form-group">
+            <?= Html::submitButton('POST', ['class' => 'btn btn-primary']); ?>
+        </div>
+        <?= Html::endForm(); ?>
+
     </div>
 </div>
