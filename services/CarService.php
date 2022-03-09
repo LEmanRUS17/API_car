@@ -38,6 +38,8 @@ class CarService implements ServicesInterface, CarServicesInterface // Серв�
 
     public function create(array $arr)
     {
+//        print_r($arr);
+//        die;
         $this->filling($arr);
 
         $validator = new CreateCarValidateDirector($this->entity);
@@ -146,6 +148,8 @@ class CarService implements ServicesInterface, CarServicesInterface // Серв�
     private function uploadImage()
     {
         $photos = $this->entity->getPhotos();
+
+        $str = [];
 
         foreach ($photos as $key => $num) {
             $path = dirname(dirname(__FILE__)) . '/web/image/';
