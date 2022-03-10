@@ -13,6 +13,7 @@ use app\services\OptionService;
 use app\services\UserService;
 use Yii;
 use yii\validators\DateValidator;
+use yii\validators\ImageValidator;
 use yii\validators\NumberValidator;
 use yii\validators\StringValidator;
 
@@ -44,6 +45,7 @@ class ValidatorBuilder implements ValidatorBuilderInterface
         $this->validationId = new NumberValidator(['min' => 1, 'max' => 100000000]);
         $this->validatorMileage = new NumberValidator(['min' => Yii::$app->params['min_mileage'], 'max' => Yii::$app->params['max_mileage']]);
         $this->validatorYear = new DateValidator(['format' => 'php:Y', 'max' => Yii::$app->params['max_year'], 'min' => Yii::$app->params['min_year']]);
+//        $this->validatorImg = new ImageValidator();
 
         $this->car = new CarService(new EntityCar([]), new EntityOption());
         $this->users = new UserService(new EntityUser());

@@ -24,6 +24,7 @@ class CreateCarValidateDirector extends Validator
         $this->builder->validatePrice($this->entity->getPrice());
         $this->builder->validateLocality($this->entity->getLocality());
         $this->builder->validateUser($this->entity->getUser());
+        $this->builder->validatePhotos($this->entity->getPhotos());
 
         if (!empty($this->entity->getSpecification())) {
             $specification = $this->entity->getSpecification();
